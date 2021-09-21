@@ -21,6 +21,10 @@ line_list = file_object.readlines()
 # Close the file (it's saved into the list)
 file_object.close()
 
+# Create to empty dictionary objects
+date_dict = {}
+coord_dict = {} 
+
 # Iterate through all lines in the linelist
 for lineString in line_list: #inserts value of first line into variable 'lineString'
     
@@ -32,7 +36,7 @@ for lineString in line_list: #inserts value of first line into variable 'lineStr
     
     #then can use indices to access desired items from each row - extract items into variables
     # records (columns) of interest: UID, date, location class (quality), lat & long
-    record_id = lineData[0] #record ID
+    record_id = lineData[0] #record ID (this is a string, not a number)
     obs_date = lineData[2]  #date of observation
     obs_lc = lineData[4]    #observation location class (quality marker)
     obs_lat = lineData[6]   #observed latitude
@@ -40,6 +44,10 @@ for lineString in line_list: #inserts value of first line into variable 'lineStr
 
     #print location of Sara
     print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat}, long:{obs_long} on {obs_date}")
+    
+    #add items to dictionaries
+    date_dict[record_id] = obs_date #UID used as key, date passed as value 
+    coord_dict[record_id] = (obs_lat, obs_long) #UID as key, lat/long pair as value
 
 
 
