@@ -9,8 +9,22 @@
 # Date:   Fall 2021
 #--------------------------------------------------------------
 
-# first: simply copy and paste one line of data from sara.txt data file (as if we read from data)
-lineString = '20616	29051	7/3/2003 9:13	3	66	33.898	-77.958	27.369	-46.309	6	0	-126	529	3	401 651134.7	0'
+# Create a variable pointing to the data file
+file_name = './data/raw/sara.txt'
+
+# Create a file object from the file
+file_object = open(file_name, 'r') #read only
+
+# Read contents of data file into a list
+line_list = file_object.readlines()
+
+# Close the file (it's saved into the list)
+file_object.close()
+
+# Read a line of the data
+lineString = line_list[100]
+lineString = line_list[2] #doesn't work - can't be split into data - header rather than data
+
 
 # now pull out specific items from that string - split into data items
 # records (columns) of interest: UID, date, location class (quality), lat & long
@@ -26,7 +40,6 @@ obs_long = lineData[7]  #observed longitude
 
 #print location of Sara
 print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat}, long:{obs_long} on {obs_date}")
-
 
 # bring data into code from sara.txt
 
