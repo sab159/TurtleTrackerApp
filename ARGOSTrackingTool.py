@@ -10,7 +10,7 @@
 #--------------------------------------------------------------
 
 #Solicit search date from user
-user_date = input("Enter date (M/D/YYYY) to search for Sara: ")
+user_date = input("Enter date [M/D/YYYY] to search for Sara: ")
 
 # Create a variable pointing to the data file
 file_name = './data/raw/sara.txt'
@@ -75,6 +75,8 @@ for matching_key in matching_keys:
     obs_lat, obs_long = coord_dict[matching_key] #split tuple into two variables
     print(f"Record {matching_key} indicates Sara was seen at lat:{obs_lat}, lon:{obs_long} on {user_date}")
 
-    
+#If no records found, tell user
+if len(matching_keys) == 0:
+    print(f"No records found for {user_date}. Check date format or choose a new date.")
 
 
