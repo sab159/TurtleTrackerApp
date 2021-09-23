@@ -34,7 +34,7 @@ for lineString in line_list: #inserts value of first line into variable 'lineStr
     # now pull out specific items from that string - split into data items
     lineData = lineString.split() #creates list object with 18 items
     
-    #then can use indices to access desired items from each row - extract items into variables
+    # then can use indices to access desired items from each row - extract items into variables
     # records (columns) of interest: UID, date, location class (quality), lat & long
     record_id = lineData[0] #record ID (this is a string, not a number)
     obs_date = lineData[2]  #date of observation
@@ -42,6 +42,10 @@ for lineString in line_list: #inserts value of first line into variable 'lineStr
     obs_lat = lineData[6]   #observed latitude
     obs_long = lineData[7]  #observed longitude
 
+    # skip if location classification value is unacceptable
+    if obs_lc not in ("1", "2", "3"): #acceptable values
+        continue                      #skips to next iteration if value is not among acceptable values
+    
     #print location of Sara
     print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat}, long:{obs_long} on {obs_date}")
     
